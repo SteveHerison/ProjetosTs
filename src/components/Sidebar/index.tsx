@@ -5,7 +5,7 @@ const Sidebar = () => {
     <aside
       className={`flex row-span-3 absolute z-10 w-full md:w-full h-full md:relative transition-transform transform `}
     >
-      <div className="relative w-1/2 h-full bg-black ">
+      <div className="relative w-1/2 md:w-full h-full bg-black ">
         <section className="flex flex-col h-full justify-between">
           <div className="h-full flex flex-col space-y-32 items-center pt-5">
             <img

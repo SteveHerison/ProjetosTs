@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 // import { peopleList } from "../../data/peopleList";
 import { useState } from "react";
 import BallonEdit from "../../components/BallonEdit";
-import Quiz from "../../components/Quiz";
+// import Quiz from "../../components/Quiz";
 // import FotosGalax from "../../components/FotosInterfalacticas";
 // import { images } from "../../data/imgGalax";
 // import ModalPhoto from "../../components/FotosInterfalacticas/ModalPhoto";
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
             {showModalPhoto && (
               <ModalPhoto image={modalItemPhoto} closeModal={closeModal} />
             )}*/}
-            <Quiz />
+            {/* <Quiz /> */}
           </section>
         )}
         <Footer />
