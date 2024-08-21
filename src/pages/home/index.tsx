@@ -10,6 +10,10 @@ import Sidebar from "../../components/Sidebar";
 // import { peopleList } from "../../data/peopleList";
 import { useState } from "react";
 import BallonEdit from "../../components/BallonEdit";
+// import EffectPlay from "../../components/EffectPlay";
+
+import Musix from "../../components/EffectPlay/Musix";
+// import Effect from "../../components/Effect";
 // import Quiz from "../../components/Quiz";
 // import FotosGalax from "../../components/FotosInterfalacticas";
 // import { images } from "../../data/imgGalax";
@@ -58,7 +62,7 @@ const Home: React.FC = () => {
         {showBallonEdit ? (
           <BallonEdit />
         ) : (
-          <section className="w-full h-full overflow-y-auto">
+          <section className="w-full h-full ">
             {/* {peopleList.length > 0 && (
             <ul>
               {peopleList.map((person) => (
@@ -85,6 +89,9 @@ const Home: React.FC = () => {
               <ModalPhoto image={modalItemPhoto} closeModal={closeModal} />
             )}*/}
             {/* <Quiz /> */}
+            {/* <Effect /> */}
+            {/* <EffectPlay /> */}
+            <Musix />
           </section>
         )}
         <Footer />
