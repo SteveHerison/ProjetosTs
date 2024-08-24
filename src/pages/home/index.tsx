@@ -10,9 +10,10 @@ import Sidebar from "../../components/Sidebar";
 // import { peopleList } from "../../data/peopleList";
 import { useState } from "react";
 import BallonEdit from "../../components/BallonEdit";
+import Reducers from "../../components/Reducers";
 // import EffectPlay from "../../components/EffectPlay";
 
-import Musix from "../../components/EffectPlay/Musix";
+// import Musix from "../../components/EffectPlay/Musix";
 // import Effect from "../../components/Effect";
 // import Quiz from "../../components/Quiz";
 // import FotosGalax from "../../components/FotosInterfalacticas";
@@ -91,7 +92,8 @@ const Home: React.FC = () => {
             {/* <Quiz /> */}
             {/* <Effect /> */}
             {/* <EffectPlay /> */}
-            <Musix />
+            {/* <Musix /> */}
+            <Reducers />
           </section>
         )}
         <Footer />
