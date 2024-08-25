@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { listReducer } from "../../reducers/listReducer";
 import Buttons from "../Buttons";
 import Inputs from "../Inputs";
@@ -6,10 +6,17 @@ import Check from "../../assets/check-box-with-check-svgrepo-com.svg";
 import Checkd from "../../assets/check-mark-button-svgrepo-com.svg";
 import Delet from "../../assets/delete-svgrepo-com.svg";
 import Edit from "../../assets/marker-edit-svgrepo-com.svg";
+import Alert from "../Alert";
+import ModalEdit from "../ModalEdit";
+import ConfirmDeleteModal from "../ConfirmDeleteModal";
+import { Item } from "../../reducers/listReducer";
 
 const Reducers = () => {
   const [list, dispatch] = useReducer(listReducer, []);
   const [inputList, setInputList] = useState("");
+  const [alertDelet, setAlertDelet] = useState(false);
+  const [editingItem, setEditingItem] = useState<Item | null>(null);
+  const [itemToDelete, setItemToDelete] = useState<Item | null>(null);
 
   const handleAdd = () => {
     if (inputList.trim() === "") return;
@@ -25,17 +32,47 @@ const Reducers = () => {
     });
   };
 
-  const handleDelet = (id: number) => {
-    dispatch({
-      type: "DELETE",
-      payload: { id },
-    });
+  const handleDeleteConfirmation = (item: Item) => {
+    setItemToDelete(item); // Exibir a confirmação de exclusão
   };
+
+  const confirmDelete = () => {
+    if (itemToDelete) {
+      dispatch({
+        type: "DELETE",
+        payload: { id: itemToDelete.id },
+      });
+      setAlertDelet(true);
+      setItemToDelete(null); // Fechar o modal de confirmação
+    }
+  };
+
+  const cancelDelete = () => {
+    setItemToDelete(null); // Cancelar a exclusão
+  };
+
+  const handleEdit = (item: Item) => {
+    setEditingItem(item); // Abrir o modal com o item a ser editado
+  };
+
+  const handleSaveEdit = (newText: string, id: number) => {
+    dispatch({ type: "EDIT", payload: { newText, id } });
+    setEditingItem(null); // Fechar o modal após salvar
+  };
+
+  useEffect(() => {
+    if (alertDelet) {
+      const timer = setTimeout(() => {
+        setAlertDelet(false);
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [alertDelet]);
 
   return (
     <div className="w-full h-full flex gap-10 p-2 flex-col justify-center items-center container mx-auto">
       <h1 className="text-3xl">Lista de Tarefas</h1>
-      <div className="flex h-full w-full gap-1">
+      <div className="flex flex-col h-full w-full gap-1">
         <div className="flex flex-col justify-center items-center h-full w-full gap-3">
           <Inputs
             placeholder="Qual o seu objetivo"
@@ -69,10 +106,18 @@ const Reducers = () => {
                   </p>
 
                   <div className="flex gap-2 items-center ml-2">
-                    <button className="" onClick={() => handleDelet(id)}>
+                    <button
+                      className=""
+                      onClick={() =>
+                        handleDeleteConfirmation({ id, text, done })
+                      }
+                    >
                       <img src={Delet} alt="" className="h-6 w-6" />
                     </button>
-                    <button className="">
+                    <button
+                      className=""
+                      onClick={() => handleEdit({ id, text, done })}
+                    >
                       <img src={Edit} alt="" className="h-6 w-6" />
                     </button>
                   </div>
@@ -82,6 +127,18 @@ const Reducers = () => {
           </div>
         </div>
       </div>
+
+      {editingItem && (
+        <ModalEdit
+          item={editingItem}
+          onClose={() => setEditingItem(null)}
+          onSave={handleSaveEdit}
+        />
+      )}
+      {itemToDelete && (
+        <ConfirmDeleteModal onConfirm={confirmDelete} onCancel={cancelDelete} />
+      )}
+      {alertDelet && <Alert />}
     </div>
   );
 };
