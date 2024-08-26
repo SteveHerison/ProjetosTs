@@ -28,7 +28,7 @@ const Inputs: React.FC<InputsProps> = ({
         {...rest}
         value={value}
         onChange={({ target }) => onchange?.(target.value)}
-        className="p-1 rounded-xl text-black"
+        className="p-1 rounded-xl text-black outline-none"
       />
     </label>
   );
