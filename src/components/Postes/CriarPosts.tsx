@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Inputs from "../Inputs";
-import { PostContext } from "../../contexts/PostContext";
+
+import { usePosts } from "../../hooks/usePosts";
 
 interface CriarPostsProps {
   handleFechar: () => void;
 }
 
 const CriarPosts: React.FC<CriarPostsProps> = ({ handleFechar }) => {
-  const postCtx = useContext(PostContext);
+  const postCtx = usePosts();
 
   const [titleInput, setTitleInput] = useState("");
   const [bodyInput, setBodyInput] = useState("");

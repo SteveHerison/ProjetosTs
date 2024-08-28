@@ -12,9 +12,10 @@ import { useState } from "react";
 import BallonEdit from "../../components/BallonEdit";
 import { UserProvider } from "../../contexts/UserContext";
 import ItemSlavo from "../../components/ItemSlavo";
-import Posts from "../../components/Postes";
+// import Posts from "../../components/Postes";
 import { PostProvider } from "../../contexts/PostContext";
 import CriarPosts from "../../components/Postes/CriarPosts";
+import DarkMode from "../../components/DarkMode";
 // import Reducers from "../../components/Reducers";
 // import EffectPlay from "../../components/EffectPlay";
 
@@ -49,9 +50,9 @@ const Home: React.FC = () => {
     }, 2000);
   };
 
-  const handleAbrir = () => {
-    setCriarPost(true);
-  };
+  // const handleAbrir = () => {
+  //   setCriarPost(true);
+  // };
 
   const handleFechar = () => {
     setCriarPost(false);
@@ -118,7 +119,8 @@ const Home: React.FC = () => {
                 {/* <EffectPlay /> */}
                 {/* <Musix /> */}
                 {/* <Reducers /> */}
-                <Posts handleAbrir={handleAbrir} />
+                {/* <Posts handleAbrir={handleAbrir} /> */}
+                <DarkMode />
               </section>
             )}
             <Footer />

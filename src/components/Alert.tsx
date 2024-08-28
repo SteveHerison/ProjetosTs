@@ -2,7 +2,7 @@ import Delete from "../assets/delete.svg";
 
 const Alert = () => {
   return (
-    <div className="absolute top-2">
+    <div className="absolute top-2 left-1/2 -translate-x-1/2">
       <div className="bg-red-300 rounded-xl relative p-2  w-52 text-red-700 flex justify-center items-center">
         <div className="flex items-center">
           <h2>Item Deletado</h2>
